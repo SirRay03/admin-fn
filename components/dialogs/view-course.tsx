@@ -30,8 +30,8 @@ export default function ViewCourse({ course }: { course: ClassType }) {
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle asChild>View Class Details</DialogTitle>
-          <DialogDescription className="py-4" asChild>
+          <DialogTitle>View Class Details</DialogTitle>
+          <DialogDescription className="py-4">
             <Table className="border-2">
             <TableHeader className="bg-muted">
               <TableRow>

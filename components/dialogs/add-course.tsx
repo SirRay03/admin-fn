@@ -53,6 +53,11 @@ export const AddCourse = () => {
     resolver: zodResolver(classSchema),
   });
 
+  function addSevenHours(date: Date) {
+    date.setHours(date.getHours() + 7);
+    return date;
+  }
+
   const onSubmit = async (values: ClassType) => {
     console.log(values);
     setLoading(true);
@@ -72,7 +77,7 @@ export const AddCourse = () => {
       quota: values.quota,
       category: values.category,
       instructor: values.instructor,
-      date: values.date,
+      date: addSevenHours(values.date),
       /* time: values.time, */
       duration: values.duration,
       price: values.price,

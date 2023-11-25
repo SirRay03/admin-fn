@@ -1,3 +1,4 @@
+"use client";
 import {
   DialogDescription,
   DialogHeader,

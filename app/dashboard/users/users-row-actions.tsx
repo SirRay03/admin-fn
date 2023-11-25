@@ -12,8 +12,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Icons } from "@/components/icons";
-
-import { UserType, userSchema } from "@/validations/UserValidation";
 import DeleteUser from "@/components/dialogs/delete-user";
 import ViewUser from "@/components/dialogs/view-user";
 import EditUser from "@/components/dialogs/edit-user";
