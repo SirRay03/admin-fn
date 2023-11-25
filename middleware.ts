@@ -19,12 +19,12 @@ export async function middleware(request: NextRequest) {
   const { data } = await supabase.auth.getUser();
 
   if (data.user == null) {
-    return NextResponse.redirect(new URL("/login?error=Please login first to access this route.", request.url));
+    return NextResponse.redirect(new URL("/?error=Please login first to access this route.", request.url));
   }
 
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/dashboard/kelas-latihan", "/dashboard/users", "/dashboard/payments", "/"],
+  matcher: ["/dashboard/kelas-latihan", "/dashboard/users", "/dashboard/payments"],
 };

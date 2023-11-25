@@ -50,6 +50,11 @@ const editSchema = z.object({
     price: z.coerce.number(),
 });
 
+function addSevenHours(date: Date) {
+  date.setHours(date.getHours() + 7);
+  return date;
+}
+
 export default function ViewCourse({ course }: { course: Course }) {
     const supabase = createClientComponentClient();
     const router = useRouter();
@@ -61,7 +66,7 @@ export default function ViewCourse({ course }: { course: Course }) {
             className: course.className,
             category: course.category,
             instructor: course.instructor,
-            date: course.date,
+            date: new Date(course.date),
             duration: course.duration,
             price: course.price,
         },
@@ -69,6 +74,9 @@ export default function ViewCourse({ course }: { course: Course }) {
 
     async function onSubmit(data: Course) {
         console.log(data);
+        if (data.date.getTime != course.date.getTime) {
+            data.date = addSevenHours(data.date);
+        }
         const { error } = await supabase.from("kelas_latihan").update(data).match({ id: data.id });
         if (error) {
             toast.error(error.message);
