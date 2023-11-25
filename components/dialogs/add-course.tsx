@@ -98,16 +98,16 @@ export const AddCourse = () => {
     <AlertDialog open={open}>
       <AlertDialogTrigger asChild>
         <li
-          className="hover:bg-gray-200 rounded-md p-2 cursor-pointer border bg-red-800"
+          className="hover:bg-gray-200 rounded-md p-2 cursor-pointer border bg-red-800 text-white hover:text-black text-center"
           onClick={() => setOpen(true)}>
-          Add Class
+          Add Course
         </li>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle asChild>
             <div className="flex justify-between items-cener">
-              <span>Add Class</span>
+              <span>Add Course</span>
               <X onClick={() => setOpen(false)} className="cursor-pointer" />
             </div>
           </AlertDialogTitle>
@@ -244,7 +244,6 @@ export const AddCourse = () => {
                         </FormItem>
                       )}
                     />
-                  
                     <FormField
                       control={form.control}
                       name="price"
@@ -268,7 +267,8 @@ export const AddCourse = () => {
                             <Button
                               size="lg"
                               type="button"
-                              className="bg-gray-200 text-gray-500 w-full">
+                              className="w-full"
+                              variant="outline">
                               <input
                                 type="file"
                                 className="hidden"
@@ -282,8 +282,7 @@ export const AddCourse = () => {
                                 ref={field.ref}
                               />
                               <label
-                                htmlFor="fileInput"
-                                className="hover:bg-gray-400 text-neutral-90  rounded-md cursor-pointer inline-flex items-center">
+                                htmlFor="fileInput">
                                 <span className="whitespace-nowrap">
                                   choose your image
                                 </span>
@@ -297,7 +296,7 @@ export const AddCourse = () => {
                   
                 </div>
                 <div className="mt-5">
-                  <Button className="bg-red-800 w-full mt-5" disabled={loading}>
+                  <Button className="bg-green-500 w-full mt-5" disabled={loading}>
                     {loading ? "loading" : "Submit"}
                   </Button>
                 </div>

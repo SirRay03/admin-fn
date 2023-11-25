@@ -1,4 +1,3 @@
-"use client";
 import {
     AlertDialog,
     AlertDialogCancel,
@@ -40,17 +39,17 @@ import { toast } from "react-toastify";
       <AlertDialog open={isOpen} onOpenChange={showActionToggle}>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>Apakah anda yakin ingin menghapus pengguna ini?</AlertDialogTitle>
+            <AlertDialogTitle>Are you sure you want to delete this user? This action cannot be undone</AlertDialogTitle>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel>Batalkan</AlertDialogCancel>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
             <Button
               variant='destructive'
               onClick={() => {
                 deleteUser();
               }}
             >
-              Hapus Pengguna
+              Delete
             </Button>
           </AlertDialogFooter>
         </AlertDialogContent>

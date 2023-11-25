@@ -1,10 +1,7 @@
 "use client";
-
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
-  DialogHeader,
   DialogTitle,
   DialogTrigger
 } from "@/components/ui/dialog";
@@ -28,26 +25,48 @@ import {
 interface Course {
     id: string;
     className: string;
+    quota: number;
     category: string;
     instructor: string;
     date: Date;
     duration: number;
     price: number;
+    image: File;
 }
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { cn } from "@/lib/utils";
-import { format } from "date-fns";
+import { cn, generateRandomNumber } from "@/lib/utils";
+import Env from "@/config/Env";
+import { useState } from "react";
+import { Input } from "../ui/input";
+
+const MAX_FILE_SIZE = 1024 * 1024 * 5;
+const ACCEPTED_IMAGE_MIME_TYPES = [
+  "image/jpeg",
+  "image/jpg",
+  "image/png",
+  "image/webp",
+];
 
 const editSchema = z.object({
-    id: z.coerce.number(),
-    className: z.string().min(1, { message: "Class Name Required" }),
-    category: z.string().min(1, { message: "Category Required" }),
-    instructor: z.string().min(1, { message: "Instructor Required" }),
-    date: z.date(),
-    duration: z.coerce.number(),
-    price: z.coerce.number(),
+  id: z.coerce.number(),
+  className: z.string().min(1, { message: "Class Name Required" }),
+  quota: z.coerce.number(),
+  category: z.string().min(1, { message: "Category Required" }),
+  instructor: z.string().min(1, { message: "Instructor Required" }),
+  date: z.date(),
+  duration: z.coerce.number(),
+  price: z.coerce.number(),
+  image: z
+    .any()
+    .refine((files) => {
+      return files?.[0]?.size <= MAX_FILE_SIZE;
+    }, `Max image size is 5MB.`)
+    .refine(
+      (files) => ACCEPTED_IMAGE_MIME_TYPES.includes(files?.[0]?.type),
+      "Only .jpg, .jpeg, .png and .webp formats are supported."
+    ),
 });
 
 function addSevenHours(date: Date) {
@@ -58,32 +77,53 @@ function addSevenHours(date: Date) {
 export default function ViewCourse({ course }: { course: Course }) {
     const supabase = createClientComponentClient();
     const router = useRouter();
+    const [selectedImage, setSelectedImage] = useState<File | null>(null);
 
     const form = useForm<Course>({
         resolver: zodResolver(editSchema),
         defaultValues: {
             id: course.id,
             className: course.className,
+            quota: course.quota,
             category: course.category,
             instructor: course.instructor,
             date: new Date(course.date),
             duration: course.duration,
             price: course.price,
+            image: course.image,
         },
     });
 
     async function onSubmit(data: Course) {
         console.log(data);
+        const uniquePath = Date.now() + "_" + generateRandomNumber();
+        const { data: imgData, error: imgErr } = await supabase.storage
+          .from(Env.S3_BUCKET)
+          .upload(uniquePath, selectedImage!);
+        if (imgErr) {
+          toast.error(imgErr.message, { theme: "colored" });
+          return;
+        }
         if (data.date.getTime != course.date.getTime) {
             data.date = addSevenHours(data.date);
         }
-        const { error } = await supabase.from("kelas_latihan").update(data).match({ id: data.id });
+        const { error } = await supabase.from("kelas_latihan").update({
+            className: data.className,
+            quota: data.quota,
+            category: data.category,
+            instructor: data.instructor,
+            date: data.date,
+            duration: data.duration,
+            price: data.price,
+            image: imgData?.path,
+        
+        }).match({ id: data.id });
         if (error) {
             toast.error(error.message);
         } else {
             toast.success("Class Updated");
-            router.refresh();
         }
+        router.refresh();
     }
 
     return (
@@ -95,19 +135,32 @@ export default function ViewCourse({ course }: { course: Course }) {
         </DialogTrigger>
         <DialogContent>
           <DialogTitle>Edit Class Details</DialogTitle>
-          <div className="grid grid-cols-2 gap-2">
-            <Form {...form}>
-              <form
-                onSubmit={form.handleSubmit(onSubmit)}
-                className="grid gap-3">
+          <Form {...form}>
+            <form
+              onSubmit={form.handleSubmit(onSubmit)}
+              className="grid gap-3 space-y-2">
+              <div className="grid grid-cols-2 gap-2">
                 <FormField
                   control={form.control}
                   name="className"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Class Name</FormLabel>
+                      <FormLabel>Course Name</FormLabel>
                       <FormControl>
-                        <input type="text" {...field} />
+                        <Input type="text" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="quota"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Quota</FormLabel>
+                      <FormControl>
+                        <Input type="number" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -148,27 +201,35 @@ export default function ViewCourse({ course }: { course: Course }) {
                     <FormItem>
                       <FormLabel>Instructor</FormLabel>
                       <FormControl>
-                        <input type="text" {...field} />
+                        <Input type="text" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
-                {/* DATE */}
                 <FormField
                   control={form.control}
                   name="date"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Reselect Date</FormLabel>
+                      <FormLabel>Select Date</FormLabel>
                       <Popover>
-                        <FormControl>
-                          <PopoverTrigger>
-                            <Button type="button">
-                                <CalendarIcon />
+                        <PopoverTrigger asChild>
+                          <FormControl>
+                            <Button
+                              variant={"outline"}
+                              className={cn(
+                                "w-full pl-3 text-left font-normal",
+                                !field.value && "text-muted-foreground"
+                              )}
+                              type="button">
+                              <CalendarIcon className="w-4 h-4 mr-2" />
+                              {field.value
+                                ? field.value.toLocaleDateString()
+                                : "Select Date"}
                             </Button>
-                          </PopoverTrigger>
-                        </FormControl>
+                          </FormControl>
+                        </PopoverTrigger>
                         <PopoverContent className="w-auto p-0" align="start">
                           <Calendar
                             mode="single"
@@ -190,7 +251,7 @@ export default function ViewCourse({ course }: { course: Course }) {
                     <FormItem>
                       <FormLabel>Duration</FormLabel>
                       <FormControl>
-                        <input type="number" {...field} />
+                        <Input type="number" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -201,22 +262,57 @@ export default function ViewCourse({ course }: { course: Course }) {
                   name="price"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Price</FormLabel>
+                      <FormLabel>Price (in Rupiahs)</FormLabel>
                       <FormControl>
-                        <input type="number" {...field} />
+                        <Input type="number" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
-                <div className="flex justify-end">
-                  <Button type="submit" className="bg-green-500">
-                    Update
-                  </Button>
-                </div>
-              </form>
-            </Form>
-          </div>
+                <FormField
+                  control={form.control}
+                  name="image"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Image</FormLabel>
+                      <FormControl>
+                        <Button
+                          size="lg"
+                          type="button"
+                          variant="outline"
+                          className="w-full">
+                          <input
+                            type="file"
+                            className="hidden"
+                            id="fileInput"
+                            onBlur={field.onBlur}
+                            name={field.name}
+                            onChange={(e) => {
+                              field.onChange(e.target.files);
+                              setSelectedImage(e.target.files?.[0] || null);
+                            }}
+                            ref={field.ref}
+                          />
+                          <label htmlFor="fileInput">
+                            <span className="whitespace-nowrap">
+                              Choose your image
+                            </span>
+                          </label>
+                        </Button>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <div className="flex justify-end">
+                <Button type="submit" className="bg-green-500 w-full mt-5">
+                  Update
+                </Button>
+              </div>
+            </form>
+          </Form>
         </DialogContent>
       </Dialog>
     );

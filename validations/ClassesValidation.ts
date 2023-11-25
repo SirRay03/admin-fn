@@ -6,7 +6,6 @@ const ACCEPTED_IMAGE_MIME_TYPES = [
   "image/png",
   "image/webp",
 ];
-const ACCEPTED_IMAGE_TYPES = ["jpeg", "jpg", "png", "webp"];
 
 export const classSchema = z.object({
   id: z.number().optional(),

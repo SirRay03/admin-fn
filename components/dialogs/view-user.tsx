@@ -1,10 +1,8 @@
-"use client";
 import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { UserType } from "@/validations/UserValidation";
 import {
   Table,
   TableBody,
@@ -26,6 +24,14 @@ interface User {
     };
   isActive: boolean;
   activeUntil: string | null;
+}
+
+function activeStatus(isActive: boolean) {
+  if (isActive) {
+    return "True";
+  } else {
+    return "False";
+  }
 }
 
 export default function ViewDialog({ user }: { user: User }) {
@@ -65,7 +71,7 @@ export default function ViewDialog({ user }: { user: User }) {
                 </TableRow>
                 <TableRow>
                 <TableCell>Active</TableCell>
-                <TableCell>{user.isActive}</TableCell>
+                <TableCell>{activeStatus(user.isActive)}</TableCell>
                 </TableRow>
                 <TableRow>
                 <TableCell>Active Until</TableCell>

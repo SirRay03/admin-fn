@@ -36,14 +36,14 @@ export default function DeleteCourse({id}: {id:number}) {
             </AlertDialogTrigger>
             <AlertDialogContent>
                 <AlertDialogHeader>
-                    <AlertDialogTitle>Hapus Kelas</AlertDialogTitle>
+                    <AlertDialogTitle>Delete Course</AlertDialogTitle>
                 </AlertDialogHeader>
                 <AlertDialogDescription>
-                    Apakah anda yakin ingin menghapus kelas ini?
+                    Are you sure you want to delete this course? This action cannot be undone
                 </AlertDialogDescription>
                 <AlertDialogFooter>
-                    <AlertDialogCancel>Batalkan</AlertDialogCancel>
-                    <AlertDialogAction className='bg-red-800' onClick={deleteCourse}>Hapus</AlertDialogAction>
+                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                    <AlertDialogAction className='bg-red-800' onClick={deleteCourse}>Delete</AlertDialogAction>
                 </AlertDialogFooter>
             </AlertDialogContent>
         </AlertDialog>
