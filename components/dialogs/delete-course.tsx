@@ -22,7 +22,7 @@ export default function DeleteCourse({id}: {id:number}) {
     const supabase = createClientComponentClient();
 
     const deleteCourse = async () => {
-        const {error:notifError} = await supabase.rpc('notify_class_deletion', {class_id: id})
+        const {error:notifError} = await supabase.rpc('notify_class_deletion', {deleted_class_id: id})
         const {error} = await supabase.from("kelas_latihan").delete().eq('id', id);
         if(error) {
             toast.error(error.message, { theme: "colored" });
