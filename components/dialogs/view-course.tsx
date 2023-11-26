@@ -41,7 +41,7 @@ export default function ViewCourse({ course }: { course: ClassType }) {
             <TableBody>
               <TableRow>
                 <TableCell>Name</TableCell>
-                <TableCell>{course.className}</TableCell>
+                <TableCell>{course.class_name}</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>Category</TableCell>
