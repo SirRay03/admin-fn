@@ -39,9 +39,9 @@ export default function ViewDialog({ user }: { user: User }) {
     console.log(user),
     <DialogHeader>
       <DialogTitle>View User Details</DialogTitle>
-      <DialogDescription class_name="py-4">
-        <Table class_name="border-2">
-          <TableHeader class_name="bg-muted">
+      <DialogDescription className="py-4">
+        <Table className="border-2">
+          <TableHeader className="bg-muted">
             <TableRow>
               <TableHead>Key</TableHead>
               <TableHead>Value</TableHead>

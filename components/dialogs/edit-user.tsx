@@ -98,9 +98,9 @@ export default function EditDialog({ user }: EditProps) {
       <DialogHeader>
         <DialogTitle>Edit User Details</DialogTitle>
       </DialogHeader>
-      <div class_name="py-4">
+      <div className="py-4">
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} class_name="grid gap-3">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-3">
             <FormField
               control={form.control}
               name="id"
@@ -168,7 +168,7 @@ export default function EditDialog({ user }: EditProps) {
             />
             {/* Include other form fields as per the User schema */}
             {/* Ensure the names used in FormField match the structure in User */}
-            <Button type="submit" class_name="mt-2 w-full">
+            <Button type="submit" className="mt-2 w-full">
               Update Details
             </Button>
           </form>

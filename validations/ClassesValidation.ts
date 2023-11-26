@@ -9,7 +9,7 @@ const ACCEPTED_IMAGE_MIME_TYPES = [
 
 export const classSchema = z.object({
   id: z.number().optional(),
-  class_name: z.string().max(30),
+  className: z.string().max(30),
   quota: z.coerce.number().max(100),
   category: z.string().max(20),
   instructor: z.string().max(30),

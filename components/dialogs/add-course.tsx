@@ -73,7 +73,7 @@ export const AddCourse = () => {
 
     // * Store class
     const { error: homeErr } = await supabase.from("kelas_latihan").insert({
-      class_name: values.class_name,
+      className: values.className,
       quota: values.quota,
       category: values.category,
       instructor: values.instructor,
@@ -98,7 +98,7 @@ export const AddCourse = () => {
     <AlertDialog open={open}>
       <AlertDialogTrigger asChild>
         <li
-          class_name=" w-full hover:bg-red-800 rounded-md p-2 cursor-pointer border bg-red-700 text-white hover:text-white text-center"
+          className=" w-full hover:bg-red-800 rounded-md p-2 cursor-pointer border bg-red-700 text-white hover:text-white text-center"
           onClick={() => setOpen(true)}>
           Add New Course
         </li>
@@ -106,20 +106,20 @@ export const AddCourse = () => {
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle asChild>
-            <div class_name="flex justify-between items-cener">
+            <div className="flex justify-between items-cener">
               <span>Add Course</span>
-              <X onClick={() => setOpen(false)} class_name="cursor-pointer" />
+              <X onClick={() => setOpen(false)} className="cursor-pointer" />
             </div>
           </AlertDialogTitle>
           <AlertDialogDescription>
             <Form {...form}>
               <form
                 onSubmit={form.handleSubmit(onSubmit)}
-                class_name="space-y-2">
-                <div class_name="grid grid-cols-2 gap-2">
+                className="space-y-2">
+                <div className="grid grid-cols-2 gap-2">
                     <FormField
                       control={form.control}
-                      name="class_name"
+                      name="className"
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel>Course Name</FormLabel>
@@ -195,14 +195,14 @@ export const AddCourse = () => {
                       control={form.control}
                       name="date"
                       render={({ field }) => (
-                        <FormItem class_name="flex flex-col">
+                        <FormItem className="flex flex-col">
                           <FormLabel>Course Date</FormLabel>
                           <Popover>
                             <PopoverTrigger asChild>
                               <FormControl>
                                 <Button
                                   variant={"outline"}
-                                  class_name={cn(
+                                  className={cn(
                                     "w-full pl-3 text-left font-normal",
                                     !field.value && "text-muted-foreground"
                                   )}>
@@ -211,12 +211,12 @@ export const AddCourse = () => {
                                   ) : (
                                     <span>Pick a date</span>
                                   )}
-                                  <CalendarIcon class_name="ml-auto h-4 w-4 opacity-50" />
+                                  <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                                 </Button>
                               </FormControl>
                             </PopoverTrigger>
                             <PopoverContent
-                              class_name="w-auto p-0"
+                              className="w-auto p-0"
                               align="start">
                               <Calendar
                                 mode="single"
@@ -267,11 +267,11 @@ export const AddCourse = () => {
                             <Button
                               size="lg"
                               type="button"
-                              class_name="w-full"
+                              className="w-full"
                               variant="outline">
                               <input
                                 type="file"
-                                class_name="hidden"
+                                className="hidden"
                                 id="fileInput"
                                 onBlur={field.onBlur}
                                 name={field.name}
@@ -283,7 +283,7 @@ export const AddCourse = () => {
                               />
                               <label
                                 htmlFor="fileInput">
-                                <span class_name="whitespace-nowrap">
+                                <span className="whitespace-nowrap">
                                   choose your image
                                 </span>
                               </label>
@@ -295,8 +295,8 @@ export const AddCourse = () => {
                     />
                   
                 </div>
-                <div class_name="mt-5">
-                  <Button class_name="bg-green-500 w-full mt-5" disabled={loading}>
+                <div className="mt-5">
+                  <Button className="bg-green-500 w-full mt-5" disabled={loading}>
                     {loading ? "loading" : "Submit"}
                   </Button>
                 </div>

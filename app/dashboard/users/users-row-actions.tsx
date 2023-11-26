@@ -55,30 +55,30 @@ export function UserRowActions<TData>({
     <Dialog>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="ghost" class_name="h-8 w-8 p-0">
-            <span class_name="sr-only">Open menu</span>
-            <MoreHorizontal class_name="h-4 w-4" />
+          <Button variant="ghost" className="h-8 w-8 p-0">
+            <span className="sr-only">Open menu</span>
+            <MoreHorizontal className="h-4 w-4" />
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
           <DialogTrigger asChild onClick={handleViewClick}>
             <DropdownMenuItem>
               {" "}
-              <Icons.view class_name="mr-2 h-4 w-4" />
+              <Icons.view className="mr-2 h-4 w-4" />
               View Details
             </DropdownMenuItem>
           </DialogTrigger>
            <DialogTrigger asChild onClick={handleEditClick}>
             <DropdownMenuItem>
-              <Icons.edit class_name="mr-2 h-4 w-4" />
+              <Icons.edit className="mr-2 h-4 w-4" />
               Edit Details
             </DropdownMenuItem>
           </DialogTrigger>
           <DropdownMenuSeparator />
           <DropdownMenuItem
             onSelect={() => setShowDeleteDialog(true)}
-            class_name="text-red-600">
-            <Icons.delete class_name="mr-2 h-4 w-4" />
+            className="text-red-600">
+            <Icons.delete className="mr-2 h-4 w-4" />
             Delete Details
           </DropdownMenuItem> 
         </DropdownMenuContent>
