@@ -42,7 +42,7 @@ export default async function KelasLatihan(){
               {courses &&
                 courses.map((item) => (
                   <TableRow key={item.id}>
-                    <TableCell className="w-1/4">{item.className}</TableCell>
+                    <TableCell className="w-1/4">{item.class_name}</TableCell>
                     <TableCell className="w-1/6">{item.date}</TableCell>
                     <TableCell className="w-1/6">
                       <Image
