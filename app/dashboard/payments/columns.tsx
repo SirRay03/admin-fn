@@ -71,7 +71,7 @@ export const columns: ColumnDef<Transaction>[] = [
 
   {
     accessorKey: "nominal",
-    header: () => <div className="text-right">Amount</div>,
+    header: () => <div className="text-center">Amount</div>,
     cell: ({ row }) => {
       const amount = parseFloat(row.getValue("nominal"));
       const formatted = new Intl.NumberFormat("en-US", {

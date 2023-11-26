@@ -23,7 +23,7 @@ export default function ViewCourse({ course }: { course: ClassType }) {
   return (
     <Dialog>
       <DialogTrigger>
-        <Button className="bg-green-500">
+        <Button className="bg-teal-600">
           <Eye />
         </Button>
       </DialogTrigger>

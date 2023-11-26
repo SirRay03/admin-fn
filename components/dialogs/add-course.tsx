@@ -98,9 +98,9 @@ export const AddCourse = () => {
     <AlertDialog open={open}>
       <AlertDialogTrigger asChild>
         <li
-          className="hover:bg-gray-200 rounded-md p-2 cursor-pointer border bg-red-800 text-white hover:text-black text-center"
+          className=" w-full hover:bg-red-800 rounded-md p-2 cursor-pointer border bg-red-700 text-white hover:text-white text-center"
           onClick={() => setOpen(true)}>
-          Add Course
+          Add New Course
         </li>
       </AlertDialogTrigger>
       <AlertDialogContent>

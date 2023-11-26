@@ -32,7 +32,7 @@ export default function DeleteCourse({id}: {id:number}) {
     return (
         <AlertDialog>
             <AlertDialogTrigger asChild>
-                <Button variant="destructive"><Trash2 /></Button>
+                <Button className='bg-red-800'><Trash2 /></Button>
             </AlertDialogTrigger>
             <AlertDialogContent>
                 <AlertDialogHeader>

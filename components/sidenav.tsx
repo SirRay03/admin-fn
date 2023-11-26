@@ -21,8 +21,8 @@ const SideNav = () => {
     };
 
     return (
-        <div className="md:w-60 bg-white h-screen flex-1 fixed border-r border-zinc-200 hidden md:flex">
-            <div className="flex flex-col space-y-6 w-full">
+        <div className="md:w-60 h-screen flex-1 fixed border-r border-zinc-200 hidden md:flex ">
+            <div className="flex flex-col w-full ">
                 <div className="flex flex-row space-x-3 items-center justify-center md:justify-start md:px-6 border-b border-zinc-200 h-12 w-full">
                     {/* <span className="h-7 w-7 bg-zinc-300 rounded-lg" />
                     <span className="font-bold text-xl hidden md:flex">FitnessNow</span> */}
@@ -34,22 +34,22 @@ const SideNav = () => {
                         priority={true}
                     />
                 </div>
-
-                <div className="flex flex-col space-y-2  md:px-6 ">
-                    {SIDENAV_ITEMS.map((item, idx) => {
-                        return <MenuItem key={idx} item={item} />;
-                    })}
-                </div>
-
-                <button
-                    onClick={handleLogout}
-                    className="flex flex-row items-center p-2 rounded-lg hover-bg-zinc-100 w-full justify-between hover:bg-zinc-100"
-                >
-                    <div className="flex flex-row space-x-4 items-center">
-                        <Icon icon="carbon:logout" width="24" height="24" />
-                        <span className="font-semibold text-xl  flex">Logout</span>
+                <div className='pt-10 md:px-6'>
+                    <h1 className='text-2xl font-bold md:px-2 pt-6'>Menu</h1>
+                    <div className="flex flex-col pt-6 space-y-4">
+                        {SIDENAV_ITEMS.map((item, idx) => {
+                            return <MenuItem key={idx} item={item} />;
+                        })}
                     </div>
-                </button>
+                    <button
+                        onClick={handleLogout}
+                        className="flex flex-row items-center p-2 my-4 rounded-lg w-full hover:bg-zinc-100">
+                        <div className="flex flex-row space-x-4 items-center">
+                            <Icon icon="carbon:logout" width="24" height="24"/>
+                            <span className="font-semibold text-xl flex ">Logout</span>
+                        </div>
+                    </button>
+                </div>
             </div>
         </div>
     );
@@ -106,7 +106,7 @@ const MenuItem = ({ item }: { item: SideNavItem }) => {
                 <Link
                     href={item.path}
                     className={`flex flex-row space-x-4 items-center p-2 rounded-lg hover:bg-zinc-100 ${
-                        item.path === pathname ? 'bg-zinc-100' : ''
+                        item.path === pathname ? 'bg-white' : ''
                     }`}
                 >
                     {item.icon}

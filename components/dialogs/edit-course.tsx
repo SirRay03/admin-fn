@@ -307,7 +307,7 @@ export default function ViewCourse({ course }: { course: Course }) {
                 />
               </div>
               <div className="flex justify-end">
-                <Button type="submit" className="bg-green-500 w-full mt-5">
+                <Button type="submit" className="bg-red-800 w-full mt-5">
                   Update
                 </Button>
               </div>
