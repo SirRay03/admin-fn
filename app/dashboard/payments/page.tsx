@@ -5,7 +5,7 @@ import { columns } from "./columns";
 
 export default async function Pembayaran() {
     const supabase = createServerComponentClient({ cookies });
-    const { data: payload, error: fetchError } = await supabase.from("transaction").select('*, users(email)');
+    const { data: payload, error: fetchError } = await supabase.from("transaction").select('*');
     const { data, error } = await supabase.rpc("sum_current_month");
     const res = new Intl.NumberFormat("en-US", {
         style: "currency",

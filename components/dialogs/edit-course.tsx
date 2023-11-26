@@ -107,21 +107,30 @@ export default function ViewCourse({ course }: { course: Course }) {
         if (data.date.getTime != course.date.getTime) {
             data.date = addSevenHours(data.date);
         }
-        const { error } = await supabase.from("kelas_latihan").update({
-            class_name: data.class_name,
-            quota: data.quota,
-            category: data.category,
-            instructor: data.instructor,
-            date: data.date,
-            duration: data.duration,
-            price: data.price,
-            image: imgData?.path,
-        
-        }).match({ id: data.id });
-        if (error) {
-            toast.error(error.message);
+        const { data:currQuota,error:currQuotaErr } = await supabase.rpc('enrolled', {check_id: data.id})
+        if (data.quota < currQuota){
+            toast.error("Quota can't be lower than current enrolled students", { theme: "colored" });
+            return;
         } else {
-            toast.success("Class Updated");
+          const { error } = await supabase
+            .from("kelas_latihan")
+            .update({
+              class_name: data.class_name,
+              quota: data.quota,
+              category: data.category,
+              instructor: data.instructor,
+              date: data.date,
+              duration: data.duration,
+              price: data.price,
+              image: imgData?.path,
+            })
+            .match({ id: data.id });
+            if (error) {
+              toast.error(error.message);
+            } else {
+              toast.success("Class Updated");
+              await supabase.rpc('notify_clas_edit', {edited_class_id: data.id})
+            }
         }
         router.refresh();
     }

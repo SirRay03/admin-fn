@@ -20,12 +20,15 @@ import ViewCourse from "@/components/dialogs/view-course";
 export default async function KelasLatihan(){
     const supabase = createServerComponentClient({cookies})
     const { data:courses,error } = await supabase.from('kelas_latihan').select()
+    const { count, error:countErr } = await supabase
+      .from("kelas_latihan")
+      .select("*", { count: "exact", head: true });
     return (
       <div className="container mx-auto py-10">
         <h1 className="text-7xl font-bold text-center">Class Dashboard</h1>
   
         <div className="flex justify-end mt-5">
-          <h1 className="text-2xl font-bold">Jumlah Kelas: xxx</h1>
+          <h1 className="text-2xl font-bold">Jumlah Kelas: {count}</h1>
         </div>
         <div className="mt-5">
           <Table className="w-full">
