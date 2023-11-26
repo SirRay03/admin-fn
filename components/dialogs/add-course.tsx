@@ -73,7 +73,7 @@ export const AddCourse = () => {
 
     // * Store class
     const { error: homeErr } = await supabase.from("kelas_latihan").insert({
-      className: values.className,
+      class_name: values.class_name,
       quota: values.quota,
       category: values.category,
       instructor: values.instructor,
@@ -119,7 +119,7 @@ export const AddCourse = () => {
                 <div className="grid grid-cols-2 gap-2">
                     <FormField
                       control={form.control}
-                      name="className"
+                      name="class_name"
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel>Course Name</FormLabel>

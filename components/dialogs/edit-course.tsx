@@ -24,7 +24,7 @@ import {
 
 interface Course {
     id: string;
-    className: string;
+    class_name: string;
     quota: number;
     category: string;
     instructor: string;
@@ -51,7 +51,7 @@ const ACCEPTED_IMAGE_MIME_TYPES = [
 
 const editSchema = z.object({
   id: z.coerce.number(),
-  className: z.string().min(1, { message: "Class Name Required" }),
+  class_name: z.string().min(1, { message: "Class Name Required" }),
   quota: z.coerce.number(),
   category: z.string().min(1, { message: "Category Required" }),
   instructor: z.string().min(1, { message: "Instructor Required" }),
@@ -83,7 +83,7 @@ export default function ViewCourse({ course }: { course: Course }) {
         resolver: zodResolver(editSchema),
         defaultValues: {
             id: course.id,
-            className: course.className,
+            class_name: course.class_name,
             quota: course.quota,
             category: course.category,
             instructor: course.instructor,
@@ -108,7 +108,7 @@ export default function ViewCourse({ course }: { course: Course }) {
             data.date = addSevenHours(data.date);
         }
         const { error } = await supabase.from("kelas_latihan").update({
-            className: data.className,
+            class_name: data.class_name,
             quota: data.quota,
             category: data.category,
             instructor: data.instructor,
@@ -142,7 +142,7 @@ export default function ViewCourse({ course }: { course: Course }) {
               <div className="grid grid-cols-2 gap-2">
                 <FormField
                   control={form.control}
-                  name="className"
+                  name="class_name"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Course Name</FormLabel>
