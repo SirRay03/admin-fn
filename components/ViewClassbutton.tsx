@@ -73,7 +73,7 @@ const ViewClassButton = () => {
 
     // * Store class
     const { error: homeErr } = await supabase.from("kelas_latihan").insert({
-      className: values.className,
+      class_name: values.class_name,
       quota: values.quota,
       category: values.category,
       instructor: values.instructor,
@@ -98,7 +98,7 @@ const ViewClassButton = () => {
     <AlertDialog open={open}>
       <AlertDialogTrigger asChild>
         <li
-          className="hover:bg-gray-200 rounded-md p-2 cursor-pointer border bg-red-800"
+          class_name="hover:bg-gray-200 rounded-md p-2 cursor-pointer border bg-red-800"
           onClick={() => setOpen(true)}>
           View Detail
         </li>
@@ -106,20 +106,20 @@ const ViewClassButton = () => {
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle asChild>
-            <div className="flex justify-between items-cener">
+            <div class_name="flex justify-between items-cener">
               <span>Class Detail</span>
-              <X onClick={() => setOpen(false)} className="cursor-pointer" />
+              <X onClick={() => setOpen(false)} class_name="cursor-pointer" />
             </div>
           </AlertDialogTitle>
           <AlertDialogDescription>
             <Form {...form}>
               <form
                 onSubmit={form.handleSubmit(onSubmit)}
-                className="space-y-2">
-                <div className="grid grid-cols-2 gap-2">
+                class_name="space-y-2">
+                <div class_name="grid grid-cols-2 gap-2">
                   <FormField
                     control={form.control}
-                    name="className"
+                    name="class_name"
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>Course Name</FormLabel>
@@ -192,14 +192,14 @@ const ViewClassButton = () => {
                     control={form.control}
                     name="date"
                     render={({ field }) => (
-                      <FormItem className="flex flex-col">
+                      <FormItem class_name="flex flex-col">
                         <FormLabel>Course Date</FormLabel>
                         <Popover>
                           <PopoverTrigger asChild>
                             <FormControl>
                               <Button
                                 variant={"outline"}
-                                className={cn(
+                                class_name={cn(
                                   "w-full pl-3 text-left font-normal",
                                   !field.value && "text-muted-foreground"
                                 )}>
@@ -208,11 +208,11 @@ const ViewClassButton = () => {
                                 ) : (
                                   <span>Pick a date</span>
                                 )}
-                                <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                                <CalendarIcon class_name="ml-auto h-4 w-4 opacity-50" />
                               </Button>
                             </FormControl>
                           </PopoverTrigger>
-                          <PopoverContent className="w-auto p-0" align="start">
+                          <PopoverContent class_name="w-auto p-0" align="start">
                             <Calendar
                               mode="single"
                               selected={field.value}
@@ -263,10 +263,10 @@ const ViewClassButton = () => {
                           <Button
                             size="lg"
                             type="button"
-                            className="bg-gray-200 text-gray-500 w-full">
+                            class_name="bg-gray-200 text-gray-500 w-full">
                             <input
                               type="file"
-                              className="hidden"
+                              class_name="hidden"
                               id="fileInput"
                               onBlur={field.onBlur}
                               name={field.name}
@@ -278,8 +278,8 @@ const ViewClassButton = () => {
                             />
                             <label
                               htmlFor="fileInput"
-                              className="hover:bg-gray-400 text-neutral-90  rounded-md cursor-pointer inline-flex items-center">
-                              <span className="whitespace-nowrap">
+                              class_name="hover:bg-gray-400 text-neutral-90  rounded-md cursor-pointer inline-flex items-center">
+                              <span class_name="whitespace-nowrap">
                                 choose your image
                               </span>
                             </label>
@@ -290,8 +290,8 @@ const ViewClassButton = () => {
                     )}
                   />
                 </div>
-                <div className="mt-5">
-                  <Button className="bg-red-800 w-full mt-5" disabled={loading}>
+                <div class_name="mt-5">
+                  <Button class_name="bg-red-800 w-full mt-5" disabled={loading}>
                     {loading ? "loading" : "Submit"}
                   </Button>
                 </div>

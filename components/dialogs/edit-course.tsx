@@ -24,7 +24,7 @@ import {
 
 interface Course {
     id: string;
-    className: string;
+    class_name: string;
     quota: number;
     category: string;
     instructor: string;
@@ -51,7 +51,7 @@ const ACCEPTED_IMAGE_MIME_TYPES = [
 
 const editSchema = z.object({
   id: z.coerce.number(),
-  className: z.string().min(1, { message: "Class Name Required" }),
+  class_name: z.string().min(1, { message: "Class Name Required" }),
   quota: z.coerce.number(),
   category: z.string().min(1, { message: "Category Required" }),
   instructor: z.string().min(1, { message: "Instructor Required" }),
@@ -83,7 +83,7 @@ export default function ViewCourse({ course }: { course: Course }) {
         resolver: zodResolver(editSchema),
         defaultValues: {
             id: course.id,
-            className: course.className,
+            class_name: course.class_name,
             quota: course.quota,
             category: course.category,
             instructor: course.instructor,
@@ -108,7 +108,7 @@ export default function ViewCourse({ course }: { course: Course }) {
             data.date = addSevenHours(data.date);
         }
         const { error } = await supabase.from("kelas_latihan").update({
-            className: data.className,
+            class_name: data.class_name,
             quota: data.quota,
             category: data.category,
             instructor: data.instructor,
@@ -129,7 +129,7 @@ export default function ViewCourse({ course }: { course: Course }) {
     return (
       <Dialog>
         <DialogTrigger>
-          <Button className="bg-blue-500">
+          <Button class_name="bg-blue-500">
             <PenSquare />
           </Button>
         </DialogTrigger>
@@ -138,11 +138,11 @@ export default function ViewCourse({ course }: { course: Course }) {
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
-              className="grid gap-3 space-y-2">
-              <div className="grid grid-cols-2 gap-2">
+              class_name="grid gap-3 space-y-2">
+              <div class_name="grid grid-cols-2 gap-2">
                 <FormField
                   control={form.control}
-                  name="className"
+                  name="class_name"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Course Name</FormLabel>
@@ -218,19 +218,19 @@ export default function ViewCourse({ course }: { course: Course }) {
                           <FormControl>
                             <Button
                               variant={"outline"}
-                              className={cn(
+                              class_name={cn(
                                 "w-full pl-3 text-left font-normal",
                                 !field.value && "text-muted-foreground"
                               )}
                               type="button">
-                              <CalendarIcon className="w-4 h-4 mr-2" />
+                              <CalendarIcon class_name="w-4 h-4 mr-2" />
                               {field.value
                                 ? field.value.toLocaleDateString()
                                 : "Select Date"}
                             </Button>
                           </FormControl>
                         </PopoverTrigger>
-                        <PopoverContent className="w-auto p-0" align="start">
+                        <PopoverContent class_name="w-auto p-0" align="start">
                           <Calendar
                             mode="single"
                             selected={field.value}
@@ -281,10 +281,10 @@ export default function ViewCourse({ course }: { course: Course }) {
                           size="lg"
                           type="button"
                           variant="outline"
-                          className="w-full">
+                          class_name="w-full">
                           <input
                             type="file"
-                            className="hidden"
+                            class_name="hidden"
                             id="fileInput"
                             onBlur={field.onBlur}
                             name={field.name}
@@ -295,7 +295,7 @@ export default function ViewCourse({ course }: { course: Course }) {
                             ref={field.ref}
                           />
                           <label htmlFor="fileInput">
-                            <span className="whitespace-nowrap">
+                            <span class_name="whitespace-nowrap">
                               Choose your image
                             </span>
                           </label>
@@ -306,8 +306,8 @@ export default function ViewCourse({ course }: { course: Course }) {
                   )}
                 />
               </div>
-              <div className="flex justify-end">
-                <Button type="submit" className="bg-red-800 w-full mt-5">
+              <div class_name="flex justify-end">
+                <Button type="submit" class_name="bg-red-800 w-full mt-5">
                   Update
                 </Button>
               </div>

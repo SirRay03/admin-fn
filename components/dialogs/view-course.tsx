@@ -23,16 +23,16 @@ export default function ViewCourse({ course }: { course: ClassType }) {
   return (
     <Dialog>
       <DialogTrigger>
-        <Button className="bg-teal-600">
+        <Button class_name="bg-teal-600">
           <Eye />
         </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>View Class Details</DialogTitle>
-          <DialogDescription className="py-4">
-            <Table className="border-2">
-            <TableHeader className="bg-muted">
+          <DialogDescription class_name="py-4">
+            <Table class_name="border-2">
+            <TableHeader class_name="bg-muted">
               <TableRow>
                 <TableHead>Key</TableHead>
                 <TableHead>Value</TableHead>
@@ -41,7 +41,7 @@ export default function ViewCourse({ course }: { course: ClassType }) {
             <TableBody>
               <TableRow>
                 <TableCell>Name</TableCell>
-                <TableCell>{course.className}</TableCell>
+                <TableCell>{course.class_name}</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>Category</TableCell>

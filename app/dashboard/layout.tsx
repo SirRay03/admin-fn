@@ -22,11 +22,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`bg-white${inter.className}`}>
-      <div className="flex">
+      <body class_name={`bg-white${inter.class_name}`}>
+      <div class_name="flex">
           <SideNav />
           <ToastContainer />
-          <main className="flex-1">
+          <main class_name="flex-1">
             <MarginWidthWrapper>
               <PageWrapper>{children}</PageWrapper>
             </MarginWidthWrapper>

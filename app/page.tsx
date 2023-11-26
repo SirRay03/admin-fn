@@ -40,9 +40,9 @@ export default function Login() {
     };
 
     return (
-    <div className="container mx-auto py-8">
-        <form className="w-full max-w-sm mx-auto bg-white p-8 rounded-md shadow-md" onSubmit={handleSubmit(onSubmit)}>
-            <div className="flex justify-center mb-4">
+    <div class_name="container mx-auto py-8">
+        <form class_name="w-full max-w-sm mx-auto bg-white p-8 rounded-md shadow-md" onSubmit={handleSubmit(onSubmit)}>
+            <div class_name="flex justify-center mb-4">
                 <Image
                     src="/images/logo.png"
                     alt="Logo"
@@ -51,42 +51,42 @@ export default function Login() {
                     priority = {true}
                 />
             </div>
-            <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
+            <div class_name="mb-4">
+            <label class_name="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
                 Email
             </label>
             <input
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-red-800"
+                class_name="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-red-800"
                 type="email"
                 id="email"
                 placeholder="clara@gmail.com"
                 {...register("email")}
             />
-            <span className="text-red-400">{errors.email?.message}</span>
+            <span class_name="text-red-400">{errors.email?.message}</span>
             </div>
-            <div className="mb-4">
+            <div class_name="mb-4">
             <label
-                className="block text-gray-700 text-sm font-bold mb-2"
+                class_name="block text-gray-700 text-sm font-bold mb-2"
                 htmlFor="password"
             >
                 Password
             </label>
             <input
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-red-800"
+                class_name="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-red-800"
                 type="password"
                 id="password"
                 placeholder="********"
                 {...register("password")}
             />
-            <span className="text-red-400">{errors.password?.message}</span>
+            <span class_name="text-red-400">{errors.password?.message}</span>
             </div>
-            <div className="flex items-center justify-between my-5">
-            <div className="flex items-start">
+            <div class_name="flex items-center justify-between my-5">
+            <div class_name="flex items-start">
                 
             </div>
             </div>
             <button
-                className="w-full bg-red-800 text-white text-sm font-bold py-3 px-4 rounded-md hover:bg-red-800 transition duration-300"
+                class_name="w-full bg-red-800 text-white text-sm font-bold py-3 px-4 rounded-md hover:bg-red-800 transition duration-300"
                 type="submit"
                 disabled={loading}>{loading ? "Processing" : "Login"}
             </button>

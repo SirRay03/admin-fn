@@ -16,14 +16,14 @@ export type Transaction = {
 const checkTransaction = (jenisBayar:string) => {
   if (jenisBayar === "Membership") {
         return (
-          <span className="px-2 inline-flex justify-center text-base p-2 w-full rounded-sm text-center leading-5 font-semibold bg-red-600 text-white">
+          <span class_name="px-2 inline-flex justify-center text-base p-2 w-full rounded-sm text-center leading-5 font-semibold bg-red-600 text-white">
             Membership
           </span>
         );
 
   } else {
     return (
-      <span className="px-2 inline-flex justify-center text-base p-2 w-full rounded-sm text-center leading-5 font-semibold bg-black text-white">
+      <span class_name="px-2 inline-flex justify-center text-base p-2 w-full rounded-sm text-center leading-5 font-semibold bg-black text-white">
         Class
       </span>
     );
@@ -39,7 +39,7 @@ export const columns: ColumnDef<Transaction>[] = [
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
           Transaction Date
-          <ArrowUpDown className="ml-2 h-4 w-4" />
+          <ArrowUpDown class_name="ml-2 h-4 w-4" />
         </Button>
       );
     },
@@ -47,8 +47,8 @@ export const columns: ColumnDef<Transaction>[] = [
       const date = new Date(row.original.created_at);
       return (
         // date and time
-        <div className="flex items-center">
-          <CalendarIcon className="h-4 w-4 mr-2" />
+        <div class_name="flex items-center">
+          <CalendarIcon class_name="h-4 w-4 mr-2" />
           {date.toLocaleDateString("en-US")}{" "}
           {date.toLocaleTimeString("en-US")}
         </div>
@@ -71,7 +71,7 @@ export const columns: ColumnDef<Transaction>[] = [
 
   {
     accessorKey: "nominal",
-    header: () => <div className="text-center">Amount</div>,
+    header: () => <div class_name="text-center">Amount</div>,
     cell: ({ row }) => {
       const amount = parseFloat(row.getValue("nominal"));
       const formatted = new Intl.NumberFormat("en-US", {
@@ -79,7 +79,7 @@ export const columns: ColumnDef<Transaction>[] = [
         currency: "IDR",
       }).format(amount);
 
-      return <div className="text-right font-medium">{formatted}</div>;
+      return <div class_name="text-right font-medium">{formatted}</div>;
     },
   },
 ];

@@ -8,15 +8,15 @@ import { Button } from "@/components/ui/button";
 const checkIsActive = (isActive: boolean) => {
   if (isActive) {
     return (
-      <div className="flex items-center">
-        <div className="h-2.5 w-2.5 rounded-full bg-green-500 mr-2"></div>{" "}
+      <div class_name="flex items-center">
+        <div class_name="h-2.5 w-2.5 rounded-full bg-green-500 mr-2"></div>{" "}
         Active
       </div>
     );
   } else {
     return (
-      <div className="flex items-center">
-        <div className="h-2.5 w-2.5 rounded-full bg-red-500 mr-2"></div>{" "}
+      <div class_name="flex items-center">
+        <div class_name="h-2.5 w-2.5 rounded-full bg-red-500 mr-2"></div>{" "}
         Inactive
       </div>
     );
@@ -42,14 +42,14 @@ export const columns: ColumnDef<User>[] = [
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
           Account Creation Date
-          <ArrowUpDown className="ml-2 h-4 w-4" />
+          <ArrowUpDown class_name="ml-2 h-4 w-4" />
         </Button>
       );
     },
     cell: ({ row }) => {
       const date = new Date(row.original.created_at);
       return (
-        <div className="flex items-center">
+        <div class_name="flex items-center">
           {date.toLocaleDateString("en-US")} {date.toLocaleTimeString("en-US")}
         </div>
       );

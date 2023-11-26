@@ -14,13 +14,13 @@ export default async function Pembayaran() {
 
     return (
         <div>
-            <div className="container mx-auto py-10">
-                <h1 className="text-7xl font-bold text-center">Payment Dashboard</h1>
+            <div class_name="container mx-auto py-10">
+                <h1 class_name="text-7xl font-bold text-center">Payment Dashboard</h1>
             </div>
-            <div className="container mx-auto pb-5">
-                <h1 className="text-2xl font-bold text-right">Total Pemasukan: {res}</h1>
+            <div class_name="container mx-auto pb-5">
+                <h1 class_name="text-2xl font-bold text-right">Total Pemasukan: {res}</h1>
             </div>
-            <div className="container mx-auto">
+            <div class_name="container mx-auto">
                 <DataTable columns={columns} data={payload ?? []} />
             </div>
         </div>

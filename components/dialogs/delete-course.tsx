@@ -32,7 +32,7 @@ export default function DeleteCourse({id}: {id:number}) {
     return (
         <AlertDialog>
             <AlertDialogTrigger asChild>
-                <Button className='bg-red-800'><Trash2 /></Button>
+                <Button class_name='bg-red-800'><Trash2 /></Button>
             </AlertDialogTrigger>
             <AlertDialogContent>
                 <AlertDialogHeader>
@@ -43,7 +43,7 @@ export default function DeleteCourse({id}: {id:number}) {
                 </AlertDialogDescription>
                 <AlertDialogFooter>
                     <AlertDialogCancel>Cancel</AlertDialogCancel>
-                    <AlertDialogAction className='bg-red-800' onClick={deleteCourse}>Delete</AlertDialogAction>
+                    <AlertDialogAction class_name='bg-red-800' onClick={deleteCourse}>Delete</AlertDialogAction>
                 </AlertDialogFooter>
             </AlertDialogContent>
         </AlertDialog>
