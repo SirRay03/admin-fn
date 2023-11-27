@@ -50,7 +50,7 @@ export const columns: ColumnDef<User>[] = [
       const date = new Date(row.original.created_at);
       return (
         <div className="flex items-center">
-          {date.toLocaleDateString("en-US")} {date.toLocaleTimeString("en-US")}
+          {date.toLocaleDateString("id-ID")} {date.toLocaleTimeString("en-US")}
         </div>
       );
     },

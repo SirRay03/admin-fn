@@ -96,6 +96,7 @@ export default function ViewCourse({ course }: { course: Course }) {
 
     async function onSubmit(data: Course) {
         console.log(data);
+        const id = data.id;
         const uniquePath = Date.now() + "_" + generateRandomNumber();
         const { data: imgData, error: imgErr } = await supabase.storage
           .from(Env.S3_BUCKET)
@@ -128,11 +129,11 @@ export default function ViewCourse({ course }: { course: Course }) {
             if (error) {
               toast.error(error.message);
             } else {
-              toast.success("Class Updated");
-              await supabase.rpc('notify_clas_edit', {edited_class_id: data.id})
+              await supabase.rpc('notify_class_edit', {edited_class_id: id})
+              router.refresh();
+              toast.success("Class Updated", { theme: "colored" });
             }
         }
-        router.refresh();
     }
 
     return (

@@ -49,8 +49,8 @@ export const columns: ColumnDef<Transaction>[] = [
         // date and time
         <div className="flex items-center">
           <CalendarIcon className="h-4 w-4 mr-2" />
-          {date.toLocaleDateString("en-US")}{" "}
-          {date.toLocaleTimeString("en-US")}
+          {date.toLocaleDateString("id-ID")}{" "}
+          {date.toLocaleTimeString("id-ID")}
         </div>
       );
     }
@@ -74,7 +74,7 @@ export const columns: ColumnDef<Transaction>[] = [
     header: () => <div className="text-center">Amount</div>,
     cell: ({ row }) => {
       const amount = parseFloat(row.getValue("nominal"));
-      const formatted = new Intl.NumberFormat("en-US", {
+      const formatted = new Intl.NumberFormat("id-ID", {
         style: "currency",
         currency: "IDR",
       }).format(amount);

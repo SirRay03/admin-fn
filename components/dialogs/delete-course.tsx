@@ -29,6 +29,7 @@ export default function DeleteCourse({id}: {id:number}) {
             return;
         }
         router.refresh()
+        toast.error("Kelas telah dihapus!", { theme: "colored" });
     }
     return (
         <AlertDialog>

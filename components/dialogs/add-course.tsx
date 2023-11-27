@@ -92,6 +92,7 @@ export const AddCourse = () => {
 
     router.refresh();
     setOpen(false);
+    toast.success("Class added successfully", { theme: "colored" });
   };
 
   return (

@@ -7,7 +7,7 @@ export default async function Pembayaran() {
     const supabase = createServerComponentClient({ cookies });
     const { data: payload, error: fetchError } = await supabase.from("transaction").select('*, users(email)');
     const { data, error } = await supabase.rpc("sum_current_month");
-    const res = new Intl.NumberFormat("en-US", {
+    const res = new Intl.NumberFormat("id-ID", {
         style: "currency",
         currency: "IDR",
     }).format(data);

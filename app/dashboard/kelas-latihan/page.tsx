@@ -16,6 +16,12 @@ import DeleteCourse from "@/components/dialogs/delete-course";
 import EditCourse from "@/components/dialogs/edit-course";
 import ViewCourse from "@/components/dialogs/view-course";
 
+function toIDR(price:number) {
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+    }).format(price);
+  }
 
 export default async function KelasLatihan(){
     const supabase = createServerComponentClient({cookies})
