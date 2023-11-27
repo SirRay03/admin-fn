@@ -20,7 +20,9 @@ export default function Login() {
     } = useForm({
         resolver: yupResolver(loginSchema),
     });
+
     const onSubmit = async (payload:LoginType) => {
+        if (payload.email === "admin@fitnessnow.tech" && payload.password === "adminfitnessnow") {
         setLoading(true);
         const {data, error} = await supabase.auth.signInWithPassword({
             email: payload.email,
@@ -35,7 +37,11 @@ export default function Login() {
                 password: payload.password,
             });
             toast.success("Logged in successfully", { theme: "colored" });
-            router.push("/dashboard/users");
+            router.push("/dashboard/kelas-latihan");
+        }
+        }
+        else {
+            toast.error("Invalid account clearance", { theme: "colored" });
         }
     };
 
