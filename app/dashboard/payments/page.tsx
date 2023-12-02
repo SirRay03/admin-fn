@@ -18,7 +18,7 @@ export default async function Pembayaran() {
                 <h1 className="text-7xl font-bold text-center">Payment Dashboard</h1>
             </div>
             <div className="container mx-auto pb-5">
-                <h1 className="text-2xl font-bold text-right">Total Pemasukan: {res}</h1>
+                <h1 className="text-2xl font-bold text-right">Total Pemasukan Bulan ini: {res}</h1>
             </div>
             <div className="container mx-auto">
                 <DataTable columns={columns} data={payload ?? []} />
